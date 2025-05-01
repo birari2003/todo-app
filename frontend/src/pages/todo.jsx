@@ -17,7 +17,6 @@ const Todo = () => {
 
   const addTodo = async (e) => {
     e.preventDefault();
-    if (!text.trim()) return;
 
     try {
       const response = await fetch("http://localhost:5000/api/todos", {

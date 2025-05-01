@@ -22,9 +22,9 @@ const Todo = () => {
       const response = await fetch("http://localhost:5000/api/todos", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(
-            { text }
-        ),
+        body: JSON.stringify({
+          text 
+        }),
       });
       const newTodo = await response.json();
       setTodos([...todos, newTodo]); // setTodos updates the value when we add new todo, here we have used spred operator for all previous entries 

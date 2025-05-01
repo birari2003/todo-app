@@ -7,7 +7,7 @@ const Todo = require('../models/Todo');
 router.post('/todos', async (req, res) => {
     const { text } = req.body;
     try {
-      const newTodo = new Todo({ text });
+      const newTodo = new Todo({ text }); //adding new value
       await newTodo.save();
       res.status(201).json(newTodo);
     } catch (error) {
@@ -22,11 +22,11 @@ router.get('/todos', async (req, res) => {
   const start = new Date();
   start.setHours(0, 0, 0, 0);
   const end = new Date();
-  end.setHours(23, 59, 59, 999);
+  end.setHours(23, 59, 59, 999); 
 
   try {
-    const todos = await Todo.find({ date: { $gte: start, $lte: end } }); // using the greater than less than 'date' is between 'start' and 'end' 
-    res.json(todos);
+    const todos = await Todo.find({ date: { $gte: start, $lte: end } }); // using aggrigate function the greater than less than 'date' is between 'start' and 'end' 
+    res.json(todos); 
   } catch (error) {
     res.status(500).json({ error: 'Server Error' });
   }
@@ -34,7 +34,7 @@ router.get('/todos', async (req, res) => {
 
 
 // Toggle a todo's completion status as the task is complited or not
-router.patch('/todos/:id/toggle', async (req, res) => {
+router.patch('/todos/:id/toggle', async (req, res) => { //we are using patch as we want to partially update the document as state (complete or not)
   const { id } = req.params;
   try {
     const todo = await Todo.findById(id);
